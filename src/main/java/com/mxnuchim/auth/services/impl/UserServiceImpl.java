@@ -64,15 +64,34 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deactivateAccount(UUID userId) {
 
+        final User user = this.userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+
+        if(!user.isEnabled()){
+            throw new BusinessException(ErrorCode.ACCOUNT_ALREADY_DEACTIVATED);
+        }
+
+        user.setEnabled(false);
+        this.userRepository.save(user);
     }
 
     @Override
     public void reactivateAccount(UUID userId) {
+        final User user = this.userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
+        if(user.isEnabled()){
+            throw new BusinessException(ErrorCode.ACCOUNT_ALREADY_ACTIVATED);
+        }
+
+        user.setEnabled(true);
+        this.userRepository.save(user);
     }
 
     @Override
     public void deleteAccount(UUID userId) {
-
+        // this needs the rest of the entities
+        // Essentially, the logic should just be to schedule the profile/user for deletion as well as other items related to the user
+        // IDEA -->> A scheduled job can handle this at intervals, pick this up and delete everything relating to the user across all tables
     }
 }
