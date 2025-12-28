@@ -43,6 +43,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(UUID userId, ChangePasswordDto dto) {
+        if(!dto.getNewPassword().equals(dto.getConfirmNewPassword())){
+            throw new BusinessException(ErrorCode.CHANGE_PASSWORDS_MISMATCH);
+        }
+
+        final User savedUser = this.userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+
+        if(!this.passwordEncoder.matches(dto.getCurrentPassword(), savedUser.getPassword())){
+            throw new BusinessException(ErrorCode.INVALID_CURRENT_PASSWORD);
+        }
+
+        final String encodedPassword = this.passwordEncoder.encode(dto.getCurrentPassword());
+
+        savedUser.setPassword(encodedPassword);
+        this.userRepository.save(savedUser);
 
     }
 
