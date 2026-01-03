@@ -29,7 +29,7 @@ public class RegistrationRequest {
             regexp = "^[\\p{L} '-]+$",
             message = "VALIDATION.REGISTRATION.FIRST_NAME.PATTERN"
     )
-    @Schema(example = "Ali")
+    @Schema(example = "Manuchim")
     String firstName;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.LAST_NAME.BLANK")
@@ -42,20 +42,20 @@ public class RegistrationRequest {
             regexp = "^[\\p{L} '-]+$",
             message = "VALIDATION.REGISTRATION.LAST_NAME.PATTERN"
     )
-    @Schema(example = "Bouali")
+    @Schema(example = "Oliver")
     String lastName;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.EMAIL.BLANK")
     @Email(message = "VALIDATION.REGISTRATION.EMAIL.FORMAT")
     @NonDisposableEmail(message = "VALIDATION.REGISTRATION.EMAIL.DISPOSABLE")
-    @Schema(example = "ali@mail.com")
+    @Schema(example = "oliver@mail.com")
     String email;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.PHONE.BLANK")
     @Pattern(regexp = "^\\+?[1-9]\\d{1,14}$",
             message = "VALIDATION.REGISTRATION.PHONE.FORMAT"
     )
-    @Schema(example = "+4912389765634")
+    @Schema(example = "+23412345678")
     String phoneNumber;
 
     @NotBlank(message = "VALIDATION.REGISTRATION.PASSWORD.BLANK")

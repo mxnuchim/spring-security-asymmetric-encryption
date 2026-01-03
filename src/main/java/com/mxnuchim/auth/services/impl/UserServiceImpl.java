@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException(ErrorCode.INVALID_CURRENT_PASSWORD);
         }
 
-        final String encodedPassword = this.passwordEncoder.encode(dto.getCurrentPassword());
+        final String encodedPassword = this.passwordEncoder.encode(dto.getNewPassword());
 
         savedUser.setPassword(encodedPassword);
         this.userRepository.save(savedUser);

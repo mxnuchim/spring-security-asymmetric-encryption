@@ -1,6 +1,8 @@
 spring:
   application:
     name: auth-asymmetric-encryption
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USERNAME}
@@ -21,20 +23,4 @@ app:
     jwt:
       access-token-expiration: 86400000 #24 hours for local testing, but I recommend 15 minutes for production
       refresh-token-expiration: 604800000
-    disposable-emails:
-      - 10minutemail.com
-      - 20minutemail.com
-      - 33mail.com
-      - 5ymail.com
-      - anonbox.com
-      - guerrillamail.com
-      - mailinator.com
-      - maildrop.cc
-      - mailnesia.com
-      - moakt.com
-      - my10minutemail.com
-      - throwawaymail.com
-      - trashmail.com
-      - temp-mail.org
-      - tempmail.com
-      - yopmail.com
+    disposable-email: 10minutemail,20minutemail,33mail,5ymail,anonbox,guerrillamail,mailinator,maildrop,mailnesia,moakt,my10minutemail,throwawaymail,trashmail,temp-mail,tempmail,truemail,yopmail

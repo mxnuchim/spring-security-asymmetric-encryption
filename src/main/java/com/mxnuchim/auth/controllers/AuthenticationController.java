@@ -44,7 +44,7 @@ public class AuthenticationController {
                 .build();
     };
 
-    @PostMapping("/refsreh-token")
+    @PostMapping("/refresh-token")
     public ResponseEntity<AuthenticationResponse> refreshToken(
             @RequestBody
             final RefreshRequest request

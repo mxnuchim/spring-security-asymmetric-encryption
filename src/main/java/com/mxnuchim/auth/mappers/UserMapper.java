@@ -3,11 +3,16 @@ package com.mxnuchim.auth.mappers;
 import com.mxnuchim.auth.dto.ProfileUpdateDto;
 import com.mxnuchim.auth.domain.entities.User;
 import com.mxnuchim.auth.dto.request.RegistrationRequest;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserMapper {
+    private final PasswordEncoder passwordEncoder;
+
     public void mergeUserInfo(final User user, final ProfileUpdateDto request) {
         if (StringUtils.isNotBlank(request.getFirstName()) && !user.getFirstName()
                 .equals(request.getFirstName())) {
@@ -29,7 +34,7 @@ public class UserMapper {
                 .lastName(request.getLastName())
                 .phoneNumber(request.getPhoneNumber())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(this.passwordEncoder.encode(request.getPassword()))
                 .enabled(true)
                 .credentialsExpired(false)
                 .accountLocked(false)
