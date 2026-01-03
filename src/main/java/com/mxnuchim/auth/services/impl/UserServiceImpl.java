@@ -1,7 +1,7 @@
 package com.mxnuchim.auth.services.impl;
 
-import com.mxnuchim.auth.domain.dto.ChangePasswordDto;
-import com.mxnuchim.auth.domain.dto.ProfileUpdateDto;
+import com.mxnuchim.auth.dto.ChangePasswordDto;
+import com.mxnuchim.auth.dto.ProfileUpdateDto;
 import com.mxnuchim.auth.domain.entities.User;
 import com.mxnuchim.auth.exceptions.BusinessException;
 import com.mxnuchim.auth.exceptions.ErrorCode;

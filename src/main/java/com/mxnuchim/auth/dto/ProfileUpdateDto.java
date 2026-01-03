@@ -1,23 +1,26 @@
-package com.mxnuchim.auth.domain.dto;
+package com.mxnuchim.auth.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChangePasswordDto {
+public class ProfileUpdateDto {
 
     @NotBlank
-    private String currentPassword;
+    private String firstName;
 
     @NotBlank
-    private String newPassword;
+    private String lastName;
 
-    @NotBlank
-    private String confirmNewPassword;
+    @Past
+    private LocalDate dateOfBirth;
 }

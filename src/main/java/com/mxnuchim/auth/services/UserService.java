@@ -1,7 +1,7 @@
 package com.mxnuchim.auth.services;
 
-import com.mxnuchim.auth.domain.dto.ChangePasswordDto;
-import com.mxnuchim.auth.domain.dto.ProfileUpdateDto;
+import com.mxnuchim.auth.dto.ChangePasswordDto;
+import com.mxnuchim.auth.dto.ProfileUpdateDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.UUID;

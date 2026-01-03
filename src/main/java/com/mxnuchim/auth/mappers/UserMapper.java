@@ -1,7 +1,8 @@
 package com.mxnuchim.auth.mappers;
 
-import com.mxnuchim.auth.domain.dto.ProfileUpdateDto;
+import com.mxnuchim.auth.dto.ProfileUpdateDto;
 import com.mxnuchim.auth.domain.entities.User;
+import com.mxnuchim.auth.dto.request.RegistrationRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,4 +22,19 @@ public class UserMapper {
             user.setDateOfBirth(request.getDateOfBirth());
         }
     }
+
+    public User toUser(RegistrationRequest request) {
+        return User.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .phoneNumber(request.getPhoneNumber())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .enabled(true)
+                .credentialsExpired(false)
+                .accountLocked(false)
+                .emailVerified(false)
+                .phoneVerified(false)
+                .build();
+    };
 }
